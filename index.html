@@ -393,19 +393,6 @@
                 <div class="proyecto-footer">
                     <span>/anduimRSS</span>
                 </div>
-            </a><a href="./martuki/" class="proyecto-card" id="card-martuki">
-                <div>
-                    <div class="proyecto-header">
-                        <div class="proyecto-icono">🌞​</div>
-                        <div class="proyecto-info">
-                            <h3>Martuki</h3>
-                            <p>Martuki wey on the way</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="proyecto-footer">
-                    <span>/martuki</span>
-                </div>
             </a></div>
 
         <!-- PIE DE PÁGINA -->
@@ -460,11 +447,11 @@
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
                 <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
-                    <span><strong>Notas de Desarrollo</strong></span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
-                </div><div class="item-borrar">
                     <span><strong>anduimRSS</strong></span>
                     <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-anduimRSS')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Martuki</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-martuki')">Eliminar</button>
                 </div></div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
@@ -474,8 +461,8 @@
             <!-- RESPUESTA EN CÓDIGO -->
             <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
                 <div class="alerta-header">
-                    <strong id="alerta-titulo">¡Módulo Añadido!</strong>
-                    <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()">Copiar Código</button>
+                    <strong id="alerta-titulo">¡Módulo Eliminado!</strong>
+                    <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()" style="background-color: rgb(48, 54, 61); color: var(--texto-principal);">Copiar Código</button>
                 </div>
                 <textarea id="codigo-resultado" readonly=""></textarea>
             </div>
