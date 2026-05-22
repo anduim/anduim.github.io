@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard General - Hub Personal</title>
+    <style>
+        :root {
+            --bg-principal: #0d1117;
+            --bg-tarjeta: #161b22;
+            --bg-borde: #30363d;
+            --texto-principal: #c9d1d9;
+            --texto-secundario: #8b949e;
+            --accento: #58a6ff;
+            --accento-verde: #2ea44f;
+            --accento-rojo: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Cabecera Des-tematizada y Limpia */
+        header {
+            border-bottom: 1px solid var(--bg-borde);
+            padding-bottom: 25px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .subtitulo {
+            color: var(--texto-secundario);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Sección de Proyectos (Grid General) */
+        .seccion-titulo {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: var(--texto-secundario);
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* Mantenemos el estilo de las cajas que te gustó */
+        .proyecto-card {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--bg-borde);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accento);
+        }
+
+        .proyecto-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .proyecto-icono {
+            width: 44px;
+            height: 44px;
+            background-color: rgba(88, 166, 255, 0.08);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            border: 1px solid rgba(88, 166, 255, 0.15);
+            object-fit: cover;
+        }
+
+        .proyecto-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--texto-principal);
+        }
+
+        .proyecto-card:hover .proyecto-info h3 {
+            color: var(--accento);
+        }
+
+        .proyecto-info p {
+            font-size: 13px;
+            color: var(--texto-secundario);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .proyecto-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(48, 54, 61, 0.4);
+            font-size: 12px;
+            color: var(--texto-secundario);
+        }
+
+        /* Acceso de administración ultra-secreto */
+        .footer-secreto {
+            margin-top: 80px;
+            border-top: 1px solid transparent;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Parece un simple punto final ordinario en el pie de página */
+        .punto-oculto {
+            background: none;
+            border: none;
+            color: var(--bg-borde);
+            cursor: default;
+            font-size: 11px;
+            user-select: none;
+            transition: color 0.5s;
+        }
+        
+        .punto-oculto:hover {
+            color: var(--texto-secundario);
+            cursor: pointer;
+        }
+
+        /* Modales y Paneles de Control */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid var(--bg-borde);
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .modal-content h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accento);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tab-menu {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--bg-borde);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--texto-secundario);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 4px 8px;
+        }
+
+        .tab-btn.active {
+            color: var(--accento);
+            border-bottom: 2px solid var(--accento);
+            font-weight: bold;
+        }
+
+        .form-panel {
+            display: none;
+        }
+
+        .form-panel.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--texto-secundario);
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            background-color: var(--bg-principal);
+            border: 1px solid var(--bg-borde);
+            padding: 10px;
+            border-radius: 6px;
+            color: var(--texto-principal);
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accento);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--bg-borde);
+        }
+
+        .btn-cancelar {
+            background: none;
+            color: var(--texto-secundario);
+        }
+
+        .btn-guardar {
+            background-color: var(--accento);
+            color: var(--bg-principal);
+            border: none;
+            font-weight: bold;
+        }
+
+        .btn-eliminar {
+            background-color: var(--accento-rojo);
+            color: white;
+            border: none;
+            font-weight: bold;
+        }
+
+        .alerta-codigo {
+            display: none;
+            background-color: #232931;
+            border: 1px solid var(--accento);
+            color: var(--texto-principal);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .alerta-codigo textarea {
+            width: 100%;
+            height: 110px;
+            background-color: var(--bg-principal);
+            color: var(--accento);
+            border: 1px solid var(--bg-borde);
+            font-family: monospace;
+            padding: 8px;
+            margin-top: 8px;
+            resize: none;
+        }
+
+        .lista-borrar {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--bg-borde);
+            border-radius: 6px;
+            background-color: var(--bg-principal);
+        }
+
+        .item-borrar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid var(--bg-borde);
+            font-size: 13px;
+        }
+
+        .item-borrar:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <!-- CABECERA GENERAL -->
+        <header>
+            <h1>Mis Proyectos y Recursos</h1>
+            <p class="subtitulo">Índice centralizado de carpetas, código y documentación personal</p>
+        </header>
+
+        <!-- SECCIÓN DE PROYECTOS -->
+        <div class="seccion-titulo">
+            Proyectos Activos
+        </div>
+
+        <div class="grid-proyectos" id="contenedor-proyectos">
+            
+            <!-- SECCIÓN DE EJEMPLO 1 -->
+            <a href="./control-acciones/" class="proyecto-card" id="card-control-acciones">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">📊</div>
+                        <div class="proyecto-info">
+                            <h3>Control de Acciones</h3>
+                            <p>Registro automatizado de operaciones de compraventa y cálculo de carteras ponderadas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/control-acciones</span>
+                </div>
+            </a>
+
+            <!-- SECCIÓN DE EJEMPLO 2 -->
+            <a href="./tesis-aurubis/" class="proyecto-card" id="card-tesis-aurubis">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">🏭</div>
+                        <div class="proyecto-info">
+                            <h3>Análisis Aurubis AG</h3>
+                            <p>Tesis de inversión fundamental basada en ratios de eficiencia PER/ROE y estudio de foso en reciclaje.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/tesis-aurubis</span>
+                </div>
+            </a>
+
+            <!-- SECCIÓN DE EJEMPLO GENERAL 3 -->
+            <a href="./Notas-Desarrollo/" class="proyecto-card" id="card-notas-desarrollo">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">💻</div>
+                        <div class="proyecto-info">
+                            <h3>Notas de Desarrollo</h3>
+                            <p>Apuntes sobre comandos de consola, despliegues en GitHub y fragmentos de código reutilizables.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/notas-desarrollo</span>
+                </div>
+            </a>
+
+        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">🪙​</div>
+                        <div class="proyecto-info">
+                            <h3>anduimRSS</h3>
+                            <p>Lector de noticias RSS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/anduimRSS</span>
+                </div>
+            </a></div>
+
+        <!-- PIE DE PÁGINA CON EL ACCESO CONSOLA TOTALMENTE ESCONDIDO -->
+        <footer class="footer-secreto">
+            <span style="color: var(--texto-secundario); font-size: 12px;">© 2026 Hub Personal</span>
+            <button class="punto-oculto" onclick="abrirModal()" title="">.</button>
+        </footer>
+
+    </div>
+
+    <!-- TERMINAL ADMINISTRADOR AVANZADA (OCULTA) -->
+    <div class="modal" id="modal-admin" style="display: flex;">
+        <div class="modal-content">
+            <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.0</span></h2>
+            
+            <div class="tab-menu">
+                <button class="tab-btn active" id="tab-add-btn" onclick="cambiarTab('add')">Añadir Módulo</button>
+                <button class="tab-btn" id="tab-del-btn" onclick="cambiarTab('del')">Eliminar Módulo</button>
+            </div>
+            
+            <!-- PANEL AÑADIR -->
+            <div class="form-panel active" id="panel-add">
+                <div class="form-group">
+                    <label for="new-title">Nombre del Proyecto</label>
+                    <input type="text" id="new-title" placeholder="Ej: Notas de Pintura">
+                </div>
+
+                <div class="form-group">
+                    <label for="new-slug">Ruta del Repositorio (Slug)</label>
+                    <input type="text" id="new-slug" placeholder="Ej: notas-pintura">
+                </div>
+
+                <div class="form-group">
+                    <label for="new-desc">Descripción Breve</label>
+                    <textarea id="new-desc" rows="2" placeholder="Describe brevemente de qué trata..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="new-icon">Icono (Emoji o URL de imagen exacta)</label>
+                    <input type="text" id="new-icon" placeholder="Ej: 🎨, 📝, 🚀 o URL de imagen">
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
+                    <button class="btn btn-guardar" onclick="generarNuevoNodo()">Generar Bloque</button>
+                </div>
+            </div>
+
+            <!-- PANEL ELIMINAR -->
+            <div class="form-panel" id="panel-del">
+                <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
+                    Selecciona qué módulo quieres remover del código actual:
+                </p>
+                <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
+                    <span><strong>Control de Acciones</strong> (card-control-acciones)</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-control-acciones')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Análisis Aurubis AG</strong> (card-tesis-aurubis)</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-tesis-aurubis')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Notas de Desarrollo</strong> (card-notas-desarrollo)</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
+                </div></div>
+                <div class="btn-group" style="margin-top:20px;">
+                    <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+
+            <!-- RESPUESTA EN CÓDIGO PARA REGENERAR EL INDEX -->
+            <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
+                <strong id="alerta-titulo">¡Módulo Añadido!</strong> Copia todo el código de abajo y reemplázalo en tu index.html de GitHub para aplicar el cambio definitivo:
+                <textarea id="codigo-resultado" readonly=""></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirModal() {
+            document.getElementById('modal-admin').style.display = 'flex';
+            actualizarListaEliminar();
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal-admin').style.display = 'none';
+            document.getElementById('alerta-codigo').style.display = 'none';
+        }
+
+        function cambiarTab(tipo) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('alerta-codigo').style.display = 'none';
+
+            if(tipo === 'add') {
+                document.getElementById('tab-add-btn').classList.add('active');
+                document.getElementById('panel-add').classList.add('active');
+            } else {
+                document.getElementById('tab-del-btn').classList.add('active');
+                document.getElementById('panel-del').classList.add('active');
+                actualizarListaEliminar();
+            }
+        }
+
+        function generarNuevoNodo() {
+            const titulo = document.getElementById('new-title').value;
+            const slug = document.getElementById('new-slug').value;
+            const desc = document.getElementById('new-desc').value;
+            const iconoInput = document.getElementById('new-icon').value || '📁';
+
+            if(!titulo || !slug) {
+                alert("Por favor, rellena el Nombre y la Ruta.");
+                return;
+            }
+
+            let iconoContenido = iconoInput;
+            if (iconoInput.startsWith('http://') || iconoInput.startsWith('https://')) {
+                iconoContenido = `<img src="${iconoInput}" class="proyecto-icono" alt="Icono">`;
+            } else {
+                iconoContenido = `<div class="proyecto-icono">${iconoInput}</div>`;
+            }
+
+            const nuevaTarjetaHTML = `
+            <a href="./${slug}/" class="proyecto-card" id="card-${slug}">
+                <div>
+                    <div class="proyecto-header">
+                        ${iconoContenido}
+                        <div class="proyecto-info">
+                            <h3>${titulo}</h3>
+                            <p>${desc}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/${slug}</span>
+                </div>
+            </a>`;
+
+            // Insertamos visualmente en el DOM local
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = nuevaTarjetaHTML.trim();
+            document.getElementById('contenedor-proyectos').appendChild(tempDiv.firstElementChild);
+
+            document.getElementById('alerta-titulo').innerText = "¡Módulo Añadido!";
+            empaquetarCodigoCompleto();
+        }
+
+        function actualizarListaEliminar() {
+            const contenedorLista = document.getElementById('lista-para-borrar');
+            contenedorLista.innerHTML = '';
+            
+            const tarjetas = document.querySelectorAll('#contenedor-proyectos .proyecto-card');
+            
+            tarjetas.forEach(tarjeta => {
+                const id = tarjeta.id;
+                const titulo = tarjeta.querySelector('h3').innerText;
+                
+                const item = document.createElement('div');
+                item.className = 'item-borrar';
+                item.innerHTML = `
+                    <span><strong>${titulo}</strong> (${id})</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('${id}')">Eliminar</button>
+                `;
+                contenedorLista.appendChild(item);
+            });
+        }
+
+        function eliminarNodoLocal(id) {
+            const elemento = document.getElementById(id);
+            if(elemento) {
+                elemento.remove();
+                document.getElementById('alerta-titulo').innerText = "¡Módulo Eliminado!";
+                empaquetarCodigoCompleto();
+                actualizarListaEliminar();
+            }
+        }
+
+        function empaquetarCodigoCompleto() {
+            // Clonamos el documento actual para limpiar el estado del modal y exportar el HTML puro
+            let clonHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            
+            // Forzamos a que el modal guardado por defecto esté oculto
+            clonHTML = clonHTML.replace('display: flex;', 'display: none;');
+            
+            const textareaResultado = document.getElementById('codigo-resultado');
+            textareaResultado.value = clonHTML;
+            document.getElementById('alerta-codigo').style.display = 'block';
+        }
+    </script>
+
+
+</body></html>
