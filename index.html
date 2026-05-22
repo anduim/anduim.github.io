@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard General - Hub Personal</title>
+    <title>anduim - Sentro de Kontrolh</title>
     <style>
         :root {
             --bg-principal: #0d1117;
@@ -13,6 +14,7 @@
             --accento: #58a6ff;
             --accento-verde: #2ea44f;
             --accento-rojo: #f85149;
+            --accento-amarillo: #f2cc60; /* Amarillo para los títulos de proyectos */
         }
 
         * {
@@ -34,27 +36,47 @@
             margin: 0 auto;
         }
 
+        /* Cabecera Gamberra y Personalizada */
         header {
             border-bottom: 1px solid var(--bg-borde);
-            padding-bottom: 25px;
+            padding: 30px;
             margin-bottom: 40px;
+            background-color: #12161f;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            /* Patrón de fondo geométrico sutil estilo cyberpunk/robot */
+            background-image: radial-gradient(var(--bg-borde) 1px, transparent 0);
+            background-size: 20px 20px;
         }
 
-        h1 {
-            font-size: 26px;
+        /* Contenedor del ASCII para asegurar monoespacio y que no se rompa */
+        .ascii-art {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accento);
+            font-size: 14px;
+            font-weight: bold;
+            white-space: pre;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+
+        .header-titulos h2 {
+            font-size: 20px;
             font-weight: 600;
-            letter-spacing: -0.5px;
             color: #ffffff;
+            margin-bottom: 4px;
         }
 
         .subtitulo {
             color: var(--texto-secundario);
             font-size: 14px;
-            margin-top: 5px;
         }
 
         .seccion-titulo {
-            font-size: 16px;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 25px;
@@ -86,7 +108,7 @@
 
         .proyecto-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accento);
+            border-color: var(--accento-amarillo);
         }
 
         .proyecto-header {
@@ -99,26 +121,23 @@
         .proyecto-icono {
             width: 44px;
             height: 44px;
-            background-color: rgba(88, 166, 255, 0.08);
+            background-color: rgba(242, 204, 96, 0.05);
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
             flex-shrink: 0;
-            border: 1px solid rgba(88, 166, 255, 0.15);
+            border: 1px solid rgba(242, 204, 96, 0.15);
             object-fit: cover;
         }
 
+        /* Cambio a Amarillo en los títulos */
         .proyecto-info h3 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 4px;
-            color: var(--texto-principal);
-        }
-
-        .proyecto-card:hover .proyecto-info h3 {
-            color: var(--accento);
+            color: var(--accento-amarillo);
         }
 
         .proyecto-info p {
@@ -130,6 +149,7 @@
             overflow: hidden;
         }
 
+        /* Cambio a Rojo en la última línea (enlaces/slugs) */
         .proyecto-footer {
             display: flex;
             justify-content: space-between;
@@ -138,7 +158,9 @@
             padding-top: 15px;
             border-top: 1px solid rgba(48, 54, 61, 0.4);
             font-size: 12px;
-            color: var(--texto-secundario);
+            color: var(--accento-rojo);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
         }
 
         .footer-secreto {
@@ -147,16 +169,18 @@
             padding-top: 20px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 5px;
         }
 
         .punto-oculto {
             background: none;
             border: none;
-            color: var(--bg-borde);
+            color: var(--bg-principal); /* Mezclado completamente con el fondo */
             cursor: default;
-            font-size: 11px;
+            font-size: 12px;
             user-select: none;
-            transition: color 0.5s;
+            outline: none;
         }
         
         .punto-oculto:hover {
@@ -164,8 +188,9 @@
             cursor: pointer;
         }
 
+        /* Modales y Paneles de Control */
         .modal {
-            display: none; /* Asegura que por defecto esté oculto */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -348,65 +373,95 @@
             border-bottom: 1px solid var(--bg-borde);
             font-size: 13px;
         }
-
-        .item-borrar:last-child {
-            border-bottom: none;
-        }
     </style>
 </head>
 <body>
 
     <div class="contenedor">
         
-        <!-- CABECERA GENERAL -->
+        <!-- CABECERA DE-TEMATIZADA CON GRAFISMO ASCII -->
         <header>
-            <h1>Mis Proyectos y Recursos</h1>
-            <p class="subtitulo">Índice centralizado de carpetas, código y documentación personal</p>
+            <div class="ascii-art">
+  __ _ _ __   __| | _   _(_) _ __ ___  
+ / _` | '_ \ / _` || | | | || '_ ` _ \ 
+| (_| | | | | (_| || |_| | || | | | | |
+ \__,_|_| |_|\__,_| \__,_|_||_| |_| |_|
+            </div>
+            <div class="header-titulos">
+                <h2>Sentro de Kontrolh</h2>
+                <p class="subtitulo">Mis cosicas bien arrejuntás</p>
+            </div>
         </header>
 
         <!-- SECCIÓN DE PROYECTOS -->
         <div class="seccion-titulo">
-            Proyectos Activos
+            Módulos de Sistema
         </div>
 
         <div class="grid-proyectos" id="contenedor-proyectos">
             
-            <!-- SECCIÓN DE EJEMPLO 1 -->
-            
-
-            <!-- SECCIÓN DE EJEMPLO 2 -->
-            
-
-            <!-- SECCIÓN DE EJEMPLO GENERAL 3 -->
-            
-
-        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
+            <!-- SECCIÓN 1 -->
+            <a href="./control-acciones/" class="proyecto-card" id="card-control-acciones">
                 <div>
                     <div class="proyecto-header">
-                        <div class="proyecto-icono">📰​</div>
+                        <div class="proyecto-icono">📊</div>
                         <div class="proyecto-info">
-                            <h3>anduimRSS</h3>
-                            <p>Lector de noticias RSS</p>
+                            <h3>Control de Acciones</h3>
+                            <p>Registro automatizado de operaciones de compraventa y cálculo de carteras ponderadas.</p>
                         </div>
                     </div>
                 </div>
                 <div class="proyecto-footer">
-                    <span>/anduimRSS</span>
+                    <span>/control-acciones</span>
                 </div>
-            </a></div>
+            </a>
 
-        <!-- PIE DE PÁGINA -->
+            <!-- SECCIÓN 2 -->
+            <a href="./tesis-aurubis/" class="proyecto-card" id="card-tesis-aurubis">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">🏭</div>
+                        <div class="proyecto-info">
+                            <h3>Análisis Aurubis AG</h3>
+                            <p>Tesis de inversión fundamental basada en ratios de eficiencia PER/ROE y estudio de foso en reciclaje.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/tesis-aurubis</span>
+                </div>
+            </a>
+
+            <!-- SECCIÓN 3 -->
+            <a href="./Notas-Desarrollo/" class="proyecto-card" id="card-notas-desarrollo">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">💻</div>
+                        <div class="proyecto-info">
+                            <h3>Notas de Desarrollo</h3>
+                            <p>Apuntes sobre comandos de consola, despliegues en GitHub y fragmentos de código reutilizables.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/notas-desarrollo</span>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- PIE DE PÁGINA CUSTOM -->
         <footer class="footer-secreto">
-            <span style="color: var(--texto-secundario); font-size: 12px;">© 2026 Hub Personal</span>
+            <span style="color: var(--texto-secundario); font-size: 12px;">anduim - Sentro de Kontrolh</span>
             <button class="punto-oculto" onclick="abrirModal()">.</button>
         </footer>
 
     </div>
 
-    <!-- TERMINAL ADMINISTRADOR AVANZADA (OCULTA) -->
-    <div class="modal" id="modal-admin" style="display: none;">
+    <!-- TERMINAL ADMINISTRADOR AVANZADA -->
+    <div class="modal" id="modal-admin">
         <div class="modal-content">
-            <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.1</span></h2>
+            <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.2</span></h2>
             
             <div class="tab-menu">
                 <button class="tab-btn active" id="tab-add-btn" onclick="cambiarTab('add')">Añadir Módulo</button>
@@ -417,12 +472,12 @@
             <div class="form-panel active" id="panel-add">
                 <div class="form-group">
                     <label for="new-title">Nombre del Proyecto</label>
-                    <input type="text" id="new-title" placeholder="Ej: Notas de Pintura">
+                    <input type="text" id="new-title" placeholder="Ej: Cuaderno de Acuarelas">
                 </div>
 
                 <div class="form-group">
                     <label for="new-slug">Ruta del Repositorio (Slug)</label>
-                    <input type="text" id="new-slug" placeholder="Ej: notas-pintura">
+                    <input type="text" id="new-slug" placeholder="Ej: cuaderno-acuarelas">
                 </div>
 
                 <div class="form-group">
@@ -432,7 +487,7 @@
 
                 <div class="form-group">
                     <label for="new-icon">Icono (Emoji o URL de imagen exacta)</label>
-                    <input type="text" id="new-icon" placeholder="Ej: 🎨, 📝, 🚀 o URL de imagen">
+                    <input type="text" id="new-icon" placeholder="Ej: 🎨, 📊, 💻">
                 </div>
 
                 <div class="btn-group">
@@ -446,32 +501,25 @@
                 <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
-                <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
-                    <span><strong>anduimRSS</strong></span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-anduimRSS')">Eliminar</button>
-                </div><div class="item-borrar">
-                    <span><strong>Martuki</strong></span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-martuki')">Eliminar</button>
-                </div></div>
+                <div class="lista-borrar" id="lista-para-borrar"></div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
                 </div>
             </div>
 
             <!-- RESPUESTA EN CÓDIGO -->
-            <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
+            <div class="alerta-codigo" id="alerta-codigo">
                 <div class="alerta-header">
-                    <strong id="alerta-titulo">¡Módulo Eliminado!</strong>
-                    <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()" style="background-color: rgb(48, 54, 61); color: var(--texto-principal);">Copiar Código</button>
+                    <strong id="alerta-titulo">¡Estructura modificada!</strong>
+                    <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()">Copiar Código</button>
                 </div>
-                <textarea id="codigo-resultado" readonly=""></textarea>
+                <textarea id="codigo-resultado" readonly></textarea>
             </div>
         </div>
     </div>
 
     <script>
         function abrirModal() {
-            // Cada vez que se abre la consola, forzamos que empiece siempre en la pestaña "Añadir"
             cambiarTab('add');
             document.getElementById('modal-admin').style.display = 'flex';
         }
@@ -537,7 +585,6 @@
             document.getElementById('alerta-titulo').innerText = "¡Módulo Añadido!";
             empaquetarCodigoCompleto();
             
-            // Limpiar campos formulario
             document.getElementById('new-title').value = '';
             document.getElementById('new-slug').value = '';
             document.getElementById('new-desc').value = '';
@@ -547,13 +594,11 @@
         function actualizarListaEliminar() {
             const contenedorLista = document.getElementById('lista-para-borrar');
             contenedorLista.innerHTML = '';
-            
             const tarjetas = document.querySelectorAll('#contenedor-proyectos .proyecto-card');
             
             tarjetas.forEach(tarjeta => {
                 const id = tarjeta.id;
                 const titulo = tarjeta.querySelector('h3').innerText;
-                
                 const item = document.createElement('div');
                 item.className = 'item-borrar';
                 item.innerHTML = `
@@ -575,55 +620,36 @@
         }
 
         function empaquetarCodigoCompleto() {
-            // CAUSA DEL ERROR SOLUCIONADA:
-            // Antes, al exportar el HTML clonábamos los estilos inline del modal abierto ("display: flex" y las pestañas activas).
-            // Para solucionarlo, creamos una copia limpia en memoria del documento actual, revertimos el estado visual del modal a como debe nacer la web de cero, y empaquetamos.
-            
             const clonDoc = document.documentElement.cloneNode(true);
-            
-            // Forzamos a que en el string guardado el modal vuelva a su estado oculto natural
             const modalClonado = clonDoc.querySelector('#modal-admin');
             if(modalClonado) {
                 modalClonado.style.display = 'none';
-                
-                // Reseteamos las pestañas del código exportado para que siempre abra en 'Añadir' por defecto al recargar
                 modalClonado.querySelector('#tab-add-btn').classList.add('active');
                 modalClonado.querySelector('#tab-del-btn').classList.remove('active');
                 modalClonado.querySelector('#panel-add').classList.add('active');
                 modalClonado.querySelector('#panel-del').classList.remove('active');
                 modalClonado.querySelector('#alerta-codigo').style.display = 'none';
             }
-            
             let htmlFinal = "<!DOCTYPE html>\n" + clonDoc.outerHTML;
-            
-            const textareaResultado = document.getElementById('codigo-resultado');
-            textareaResultado.value = htmlFinal;
+            document.getElementById('codigo-resultado').value = htmlFinal;
             document.getElementById('alerta-codigo').style.display = 'block';
         }
 
         function copiarCodigoAlPortapapeles() {
             const textarea = document.getElementById('codigo-resultado');
             textarea.select();
-            textarea.setSelectionRange(0, 99999); // Para móviles
-            
             navigator.clipboard.writeText(textarea.value).then(() => {
                 const boton = document.getElementById('btn-copiar-id');
                 boton.innerText = "¡Copiado! ✓";
                 boton.style.backgroundColor = "var(--accento-verde)";
                 boton.style.color = "white";
-                
                 setTimeout(() => {
                     boton.innerText = "Copiar Código";
                     boton.style.backgroundColor = "#30363d";
                     boton.style.color = "var(--texto-principal)";
                 }, 2000);
-            }).catch(err => {
-                alert("No se pudo copiar automáticamente, por favor selecciónalo manualmente.");
             });
         }
     </script>
-
-
-
-
-</body></html>
+</body>
+</html>
