@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>anduim - Sentro de Kontrolh</title>
@@ -401,54 +400,28 @@
         <div class="grid-proyectos" id="contenedor-proyectos">
             
             <!-- SECCIÓN 1 -->
-            <a href="./control-acciones/" class="proyecto-card" id="card-control-acciones">
-                <div>
-                    <div class="proyecto-header">
-                        <div class="proyecto-icono">📊</div>
-                        <div class="proyecto-info">
-                            <h3>Control de Acciones</h3>
-                            <p>Registro automatizado de operaciones de compraventa y cálculo de carteras ponderadas.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="proyecto-footer">
-                    <span>/control-acciones</span>
-                </div>
-            </a>
+            
 
             <!-- SECCIÓN 2 -->
-            <a href="./tesis-aurubis/" class="proyecto-card" id="card-tesis-aurubis">
-                <div>
-                    <div class="proyecto-header">
-                        <div class="proyecto-icono">🏭</div>
-                        <div class="proyecto-info">
-                            <h3>Análisis Aurubis AG</h3>
-                            <p>Tesis de inversión fundamental basada en ratios de eficiencia PER/ROE y estudio de foso en reciclaje.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="proyecto-footer">
-                    <span>/tesis-aurubis</span>
-                </div>
-            </a>
+            
 
             <!-- SECCIÓN 3 -->
-            <a href="./Notas-Desarrollo/" class="proyecto-card" id="card-notas-desarrollo">
+            
+
+        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
                 <div>
                     <div class="proyecto-header">
-                        <div class="proyecto-icono">💻</div>
+                        <div class="proyecto-icono">📰</div>
                         <div class="proyecto-info">
-                            <h3>Notas de Desarrollo</h3>
-                            <p>Apuntes sobre comandos de consola, despliegues en GitHub y fragmentos de código reutilizables.</p>
+                            <h3>anduimRSS</h3>
+                            <p>Lector de noticias RSS</p>
                         </div>
                     </div>
                 </div>
                 <div class="proyecto-footer">
-                    <span>/notas-desarrollo</span>
+                    <span>/anduimRSS</span>
                 </div>
-            </a>
-
-        </div>
+            </a></div>
 
         <!-- PIE DE PÁGINA CUSTOM -->
         <footer class="footer-secreto">
@@ -459,7 +432,7 @@
     </div>
 
     <!-- TERMINAL ADMINISTRADOR AVANZADA -->
-    <div class="modal" id="modal-admin">
+    <div class="modal" id="modal-admin" style="display: none;">
         <div class="modal-content">
             <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.2</span></h2>
             
@@ -501,19 +474,25 @@
                 <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
-                <div class="lista-borrar" id="lista-para-borrar"></div>
+                <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
+                    <span><strong>Notas de Desarrollo</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>anduimRSS</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-anduimRSS')">Eliminar</button>
+                </div></div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
                 </div>
             </div>
 
             <!-- RESPUESTA EN CÓDIGO -->
-            <div class="alerta-codigo" id="alerta-codigo">
+            <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
                 <div class="alerta-header">
-                    <strong id="alerta-titulo">¡Estructura modificada!</strong>
+                    <strong id="alerta-titulo">¡Módulo Eliminado!</strong>
                     <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()">Copiar Código</button>
                 </div>
-                <textarea id="codigo-resultado" readonly></textarea>
+                <textarea id="codigo-resultado" readonly=""></textarea>
             </div>
         </div>
     </div>
@@ -651,5 +630,6 @@
             });
         }
     </script>
-</body>
-</html>
+
+
+</body></html>
