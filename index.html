@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard General - Hub Personal</title>
@@ -34,7 +35,6 @@
             margin: 0 auto;
         }
 
-        /* Cabecera Des-tematizada y Limpia */
         header {
             border-bottom: 1px solid var(--bg-borde);
             padding-bottom: 25px;
@@ -54,14 +54,13 @@
             margin-top: 5px;
         }
 
-        /* Sección de Proyectos (Grid General) */
         .seccion-titulo {
             font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 25px;
             color: var(--texto-secundario);
-            display: none;
+            display: flex;
             align-items: center;
             gap: 10px;
         }
@@ -72,13 +71,12 @@
             gap: 24px;
         }
 
-        /* Mantenemos el estilo de las cajas que te gustó */
         .proyecto-card {
             background-color: var(--bg-tarjeta);
             border: 1px solid var(--bg-borde);
             border-radius: 8px;
             padding: 24px;
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.2s, border-color 0.2s;
@@ -144,7 +142,6 @@
             color: var(--texto-secundario);
         }
 
-        /* Acceso de administración ultra-secreto */
         .footer-secreto {
             margin-top: 80px;
             border-top: 1px solid transparent;
@@ -153,7 +150,6 @@
             justify-content: center;
         }
 
-        /* Parece un simple punto final ordinario en el pie de página */
         .punto-oculto {
             background: none;
             border: none;
@@ -169,9 +165,8 @@
             cursor: pointer;
         }
 
-        /* Modales y Paneles de Control */
         .modal {
-            display: none;
+            display: none; /* Asegura que por defecto esté oculto */
             position: fixed;
             top: 0;
             left: 0;
@@ -197,9 +192,6 @@
             font-size: 18px;
             margin-bottom: 20px;
             color: var(--accento);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .tab-menu {
@@ -305,6 +297,31 @@
             font-size: 12px;
         }
 
+        .alerta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .btn-copiar {
+            background-color: #30363d;
+            color: var(--texto-principal);
+            border: 1px solid var(--bg-borde);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .btn-copiar:hover {
+            background-color: var(--accento);
+            color: var(--bg-principal);
+            border-color: var(--accento);
+        }
+
         .alerta-codigo textarea {
             width: 100%;
             height: 110px;
@@ -313,7 +330,6 @@
             border: 1px solid var(--bg-borde);
             font-family: monospace;
             padding: 8px;
-            margin-top: 8px;
             resize: none;
         }
 
@@ -357,40 +373,67 @@
         <div class="grid-proyectos" id="contenedor-proyectos">
             
             <!-- SECCIÓN DE EJEMPLO 1 -->
-            
-
-            <!-- SECCIÓN DE EJEMPLO 2 -->
-            
-
-            <!-- SECCIÓN DE EJEMPLO GENERAL 3 -->
-        
-        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
+            <a href="./control-acciones/" class="proyecto-card" id="card-control-acciones">
                 <div>
                     <div class="proyecto-header">
-                        <div class="proyecto-icono">📰</div>
+                        <div class="proyecto-icono">📊</div>
                         <div class="proyecto-info">
-                            <h3>anduimRSS</h3>
-                            <p>Lector de noticias RSS</p>
+                            <h3>Control de Acciones</h3>
+                            <p>Registro automatizado de operaciones de compraventa y cálculo de carteras ponderadas.</p>
                         </div>
                     </div>
                 </div>
                 <div class="proyecto-footer">
-                    <span>/anduimRSS</span>
+                    <span>/control-acciones</span>
                 </div>
-            
+            </a>
 
-        <!-- PIE DE PÁGINA CON EL ACCESO CONSOLA TOTALMENTE ESCONDIDO -->
+            <!-- SECCIÓN DE EJEMPLO 2 -->
+            <a href="./tesis-aurubis/" class="proyecto-card" id="card-tesis-aurubis">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">🏭</div>
+                        <div class="proyecto-info">
+                            <h3>Análisis Aurubis AG</h3>
+                            <p>Tesis de inversión fundamental basada en ratios de eficiencia PER/ROE y estudio de foso en reciclaje.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/tesis-aurubis</span>
+                </div>
+            </a>
+
+            <!-- SECCIÓN DE EJEMPLO GENERAL 3 -->
+            <a href="./Notas-Desarrollo/" class="proyecto-card" id="card-notas-desarrollo">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">💻</div>
+                        <div class="proyecto-info">
+                            <h3>Notas de Desarrollo</h3>
+                            <p>Apuntes sobre comandos de consola, despliegues en GitHub y fragmentos de código reutilizables.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/notas-desarrollo</span>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- PIE DE PÁGINA -->
         <footer class="footer-secreto">
             <span style="color: var(--texto-secundario); font-size: 12px;">© 2026 Hub Personal</span>
-            <button class="punto-oculto" onclick="abrirModal()" title="">.</button>
+            <button class="punto-oculto" onclick="abrirModal()">.</button>
         </footer>
 
     </div>
 
     <!-- TERMINAL ADMINISTRADOR AVANZADA (OCULTA) -->
-    <div class="modal" id="modal-admin" style="display: flex;">
+    <div class="modal" id="modal-admin">
         <div class="modal-content">
-            <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.0</span></h2>
+            <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.1</span></h2>
             
             <div class="tab-menu">
                 <button class="tab-btn active" id="tab-add-btn" onclick="cambiarTab('add')">Añadir Módulo</button>
@@ -430,30 +473,30 @@
                 <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
-                <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
-                    <span><strong>Análisis Aurubis AG</strong> (card-tesis-aurubis)</span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-tesis-aurubis')">Eliminar</button>
-                </div><div class="item-borrar">
-                    <span><strong>Notas de Desarrollo</strong> (card-notas-desarrollo)</span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
-                </div></div>
+                <div class="lista-borrar" id="lista-para-borrar">
+                    <!-- Se rellena dinámicamente -->
+                </div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
                 </div>
             </div>
 
-            <!-- RESPUESTA EN CÓDIGO PARA REGENERAR EL INDEX -->
-            <div class="alerta-codigo" id="alerta-codigo" style="display: block;">
-                <strong id="alerta-titulo">¡Módulo Añadido!</strong> Copia todo el código de abajo y reemplázalo en tu index.html de GitHub para aplicar el cambio definitivo:
-                <textarea id="codigo-resultado" readonly=""></textarea>
+            <!-- RESPUESTA EN CÓDIGO -->
+            <div class="alerta-codigo" id="alerta-codigo">
+                <div class="alerta-header">
+                    <strong id="alerta-titulo">¡Estructura modificada!</strong>
+                    <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()">Copiar Código</button>
+                </div>
+                <textarea id="codigo-resultado" readonly></textarea>
             </div>
         </div>
     </div>
 
     <script>
         function abrirModal() {
+            // Cada vez que se abre la consola, forzamos que empiece siempre en la pestaña "Añadir"
+            cambiarTab('add');
             document.getElementById('modal-admin').style.display = 'flex';
-            actualizarListaEliminar();
         }
 
         function cerrarModal() {
@@ -510,13 +553,18 @@
                 </div>
             </a>`;
 
-            // Insertamos visualmente en el DOM local
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = nuevaTarjetaHTML.trim();
             document.getElementById('contenedor-proyectos').appendChild(tempDiv.firstElementChild);
 
             document.getElementById('alerta-titulo').innerText = "¡Módulo Añadido!";
             empaquetarCodigoCompleto();
+            
+            // Limpiar campos formulario
+            document.getElementById('new-title').value = '';
+            document.getElementById('new-slug').value = '';
+            document.getElementById('new-desc').value = '';
+            document.getElementById('new-icon').value = '';
         }
 
         function actualizarListaEliminar() {
@@ -532,7 +580,7 @@
                 const item = document.createElement('div');
                 item.className = 'item-borrar';
                 item.innerHTML = `
-                    <span><strong>${titulo}</strong> (${id})</span>
+                    <span><strong>${titulo}</strong></span>
                     <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('${id}')">Eliminar</button>
                 `;
                 contenedorLista.appendChild(item);
@@ -550,18 +598,52 @@
         }
 
         function empaquetarCodigoCompleto() {
-            // Clonamos el documento actual para limpiar el estado del modal y exportar el HTML puro
-            let clonHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            // CAUSA DEL ERROR SOLUCIONADA:
+            // Antes, al exportar el HTML clonábamos los estilos inline del modal abierto ("display: flex" y las pestañas activas).
+            // Para solucionarlo, creamos una copia limpia en memoria del documento actual, revertimos el estado visual del modal a como debe nacer la web de cero, y empaquetamos.
             
-            // Forzamos a que el modal guardado por defecto esté oculto
-            clonHTML = clonHTML.replace('display: flex;', 'display: none;');
+            const clonDoc = document.documentElement.cloneNode(true);
+            
+            // Forzamos a que en el string guardado el modal vuelva a su estado oculto natural
+            const modalClonado = clonDoc.querySelector('#modal-admin');
+            if(modalClonado) {
+                modalClonado.style.display = 'none';
+                
+                // Reseteamos las pestañas del código exportado para que siempre abra en 'Añadir' por defecto al recargar
+                modalClonado.querySelector('#tab-add-btn').classList.add('active');
+                modalClonado.querySelector('#tab-del-btn').classList.remove('active');
+                modalClonado.querySelector('#panel-add').classList.add('active');
+                modalClonado.querySelector('#panel-del').classList.remove('active');
+                modalClonado.querySelector('#alerta-codigo').style.display = 'none';
+            }
+            
+            let htmlFinal = "<!DOCTYPE html>\n" + clonDoc.outerHTML;
             
             const textareaResultado = document.getElementById('codigo-resultado');
-            textareaResultado.value = clonHTML;
+            textareaResultado.value = htmlFinal;
             document.getElementById('alerta-codigo').style.display = 'block';
         }
+
+        function copiarCodigoAlPortapapeles() {
+            const textarea = document.getElementById('codigo-resultado');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // Para móviles
+            
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                const boton = document.getElementById('btn-copiar-id');
+                boton.innerText = "¡Copiado! ✓";
+                boton.style.backgroundColor = "var(--accento-verde)";
+                boton.style.color = "white";
+                
+                setTimeout(() => {
+                    boton.innerText = "Copiar Código";
+                    boton.style.backgroundColor = "#30363d";
+                    boton.style.color = "var(--texto-principal)";
+                }, 2000);
+            }).catch(err => {
+                alert("No se pudo copiar automáticamente, por favor selecciónalo manualmente.");
+            });
+        }
     </script>
-
-
-
-</body></html>
+</body>
+</html>
