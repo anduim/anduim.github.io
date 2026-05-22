@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard General - Hub Personal</title>
@@ -420,7 +419,20 @@
                 </div>
             </a>
 
-        </div>
+        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">📰​</div>
+                        <div class="proyecto-info">
+                            <h3>anduimRSS</h3>
+                            <p>Lector de noticias RSS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/anduimRSS</span>
+                </div>
+            </a></div>
 
         <!-- PIE DE PÁGINA -->
         <footer class="footer-secreto">
@@ -431,7 +443,7 @@
     </div>
 
     <!-- TERMINAL ADMINISTRADOR AVANZADA (OCULTA) -->
-    <div class="modal" id="modal-admin">
+    <div class="modal" id="modal-admin" style="display: none;">
         <div class="modal-content">
             <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.1</span></h2>
             
@@ -473,21 +485,28 @@
                 <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
-                <div class="lista-borrar" id="lista-para-borrar">
-                    <!-- Se rellena dinámicamente -->
-                </div>
+                <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
+                    <span><strong>Control de Acciones</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-control-acciones')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Análisis Aurubis AG</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-tesis-aurubis')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Notas de Desarrollo</strong></span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
+                </div></div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
                 </div>
             </div>
 
             <!-- RESPUESTA EN CÓDIGO -->
-            <div class="alerta-codigo" id="alerta-codigo">
+            <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
                 <div class="alerta-header">
-                    <strong id="alerta-titulo">¡Estructura modificada!</strong>
+                    <strong id="alerta-titulo">¡Módulo Añadido!</strong>
                     <button class="btn-copiar" id="btn-copiar-id" onclick="copiarCodigoAlPortapapeles()">Copiar Código</button>
                 </div>
-                <textarea id="codigo-resultado" readonly></textarea>
+                <textarea id="codigo-resultado" readonly=""></textarea>
             </div>
         </div>
     </div>
@@ -645,5 +664,6 @@
             });
         }
     </script>
-</body>
-</html>
+
+
+</body></html>
