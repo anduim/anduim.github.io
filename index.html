@@ -93,7 +93,7 @@
         }
 
         .proyecto-header {
-            display: none;
+            display: flex;
             align-items: flex-start;
             gap: 16px;
             margin-bottom: 16px;
@@ -363,9 +363,21 @@
             
 
             <!-- SECCIÓN DE EJEMPLO GENERAL 3 -->
+        
+        <a href="./anduimRSS/" class="proyecto-card" id="card-anduimRSS">
+                <div>
+                    <div class="proyecto-header">
+                        <div class="proyecto-icono">📰</div>
+                        <div class="proyecto-info">
+                            <h3>anduimRSS</h3>
+                            <p>Lector de noticias RSS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="proyecto-footer">
+                    <span>/anduimRSS</span>
+                </div>
             
-
-        </div>
 
         <!-- PIE DE PÁGINA CON EL ACCESO CONSOLA TOTALMENTE ESCONDIDO -->
         <footer class="footer-secreto">
@@ -381,12 +393,12 @@
             <h2>⚙️ Consola del Sistema <span style="font-size:11px; color:var(--texto-secundario)">v2.0</span></h2>
             
             <div class="tab-menu">
-                <button class="tab-btn" id="tab-add-btn" onclick="cambiarTab('add')">Añadir Módulo</button>
-                <button class="tab-btn active" id="tab-del-btn" onclick="cambiarTab('del')">Eliminar Módulo</button>
+                <button class="tab-btn active" id="tab-add-btn" onclick="cambiarTab('add')">Añadir Módulo</button>
+                <button class="tab-btn" id="tab-del-btn" onclick="cambiarTab('del')">Eliminar Módulo</button>
             </div>
             
             <!-- PANEL AÑADIR -->
-            <div class="form-panel" id="panel-add">
+            <div class="form-panel active" id="panel-add">
                 <div class="form-group">
                     <label for="new-title">Nombre del Proyecto</label>
                     <input type="text" id="new-title" placeholder="Ej: Notas de Pintura">
@@ -414,13 +426,16 @@
             </div>
 
             <!-- PANEL ELIMINAR -->
-            <div class="form-panel active" id="panel-del">
+            <div class="form-panel" id="panel-del">
                 <p style="font-size: 12px; color: var(--texto-secundario); margin-bottom: 12px;">
                     Selecciona qué módulo quieres remover del código actual:
                 </p>
                 <div class="lista-borrar" id="lista-para-borrar"><div class="item-borrar">
-                    <span><strong>anduimRSS</strong> (card-anduimRSS)</span>
-                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-anduimRSS')">Eliminar</button>
+                    <span><strong>Análisis Aurubis AG</strong> (card-tesis-aurubis)</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-tesis-aurubis')">Eliminar</button>
+                </div><div class="item-borrar">
+                    <span><strong>Notas de Desarrollo</strong> (card-notas-desarrollo)</span>
+                    <button class="btn btn-eliminar" style="padding:4px 8px; font-size:11px;" onclick="eliminarNodoLocal('card-notas-desarrollo')">Eliminar</button>
                 </div></div>
                 <div class="btn-group" style="margin-top:20px;">
                     <button class="btn btn-cancelar" onclick="cerrarModal()">Cerrar</button>
@@ -428,8 +443,8 @@
             </div>
 
             <!-- RESPUESTA EN CÓDIGO PARA REGENERAR EL INDEX -->
-            <div class="alerta-codigo" id="alerta-codigo" style="display: none;">
-                <strong id="alerta-titulo">¡Módulo Eliminado!</strong> Copia todo el código de abajo y reemplázalo en tu index.html de GitHub para aplicar el cambio definitivo:
+            <div class="alerta-codigo" id="alerta-codigo" style="display: block;">
+                <strong id="alerta-titulo">¡Módulo Añadido!</strong> Copia todo el código de abajo y reemplázalo en tu index.html de GitHub para aplicar el cambio definitivo:
                 <textarea id="codigo-resultado" readonly=""></textarea>
             </div>
         </div>
@@ -546,6 +561,7 @@
             document.getElementById('alerta-codigo').style.display = 'block';
         }
     </script>
+
 
 
 </body></html>
